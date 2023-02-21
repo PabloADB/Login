@@ -1,0 +1,114 @@
+<html> <!---Pablo Antonio Dominguez Bustos--> 
+    <head>
+    <link rel="shortcut icon" href="giphy.gif">
+    <title>Materias</title>
+    <style>
+
+      body {
+        background-color: #2E4053 ;
+            font-family: cursive;
+            font-style: italic;
+            text-align:center;
+      }
+     
+      .results{
+        padding-left: 50%;
+}
+      
+h1{
+      color: lightcyan;
+      padding-top: 20px;
+  }
+  p{
+    color: lightcyan;
+  }
+  tr{
+    color: lightcyan;
+  }
+
+</style>
+</head>
+<body>
+<div style ="background:#1B2631;">
+<font color ="white" size="6px"> 
+<b>Materias 3A programacion</b>
+</font>
+
+</div>
+<div style ="background:#00276c;">
+<h1>Calificacion</h1>
+<form name="cali" id ="myForm" action="" sytle ="font-size: 20mpx">
+<p>Nombre completo: <input type ="text" id ="name" name="nombre" class="form-control dato" placeholder=""/></p> 
+<p>Biologia: <input type ="text" id ="n1" class="dato" placeholder=""/></p> 
+  <p>Etica: <input type ="text" id ="n2" class="dato" placeholder=""/></p>
+  <p>POE: <input type ="text" id ="n3" class="dato" placeholder="" /></p>
+  <p>POO: <input type ="text" id ="n4" class="dato" placeholder=""/></p>
+  <p>Ingles: <input type ="text" id ="n5" class="dato" placeholder=""/></p>
+  <p>Geometria: <input type ="text" id ="n6" class="dato" placeholder=""/></p>
+  <input type="button" value="Imprimir" onclick="javascript:window.print()"/>
+  <input type ="button" value="Reset data" onclick="fun()" />
+  <input type="button" value="Agregar" onclick="viwsArrayInpunt()" />
+  <input type="button" value="Calcular" onclick="CalcularPromedio()" />
+  <p>Promedio es: <input type="Text" name="resultado" id="promedio"class="dato">
+
+</form>
+<div id="results">
+<table id="tabla">
+  <tr>
+    <th>Nombre</th>
+    <th>Etica</th>
+    <th>POE</th>
+    <th>POO</th>
+    <th>Ingles</th>
+    <th>Geometria</th>
+    <th>Promedio</th>
+  </tr>
+</table>
+</div>
+
+</div>
+  <script>
+      function fun(){
+        document.getElementById("myForm").reset();
+        const renglones = document.querySelectorAll('.renglon');
+        renglones.forEach(renglon => {
+          renglon.remove();
+        });
+      }
+      //var doc = new jsPDF();
+      //doc.text(10, 10, 'Hello world!');
+      //doc.save('hello-world.pdf');
+
+      function viwsArrayInpunt(){
+        var arrayInpunt = new Array();
+        var inputsValues = [];
+        var inputsValues = document.getElementsByClassName('dato'),
+
+        namesValues  = [].map.call(inputsValues,function(dataInput){
+            arrayInpunt.push(dataInput.value);
+        });
+        let trNode = document.createElement("tr");
+        trNode.classList.add("renglon");
+        arrayInpunt.forEach(function(inputsValuesData){
+          //console.log("El dato es:", inputsValuesData);
+          let tdNode = document.createElement("td");
+          let textNode = document.createTextNode(inputsValuesData);
+          tdNode.appendChild(textNode);
+          trNode.appendChild(tdNode);
+        });
+
+        document.getElementById("tabla").appendChild(trNode);
+      }
+      function CalcularPromedio(){
+        var v1 = document.getElementById("n1").value;
+        var v2 = document.getElementById("n2").value;
+        var v3 = document.getElementById("n3").value;
+        var v4 = document.getElementById("n4").value;
+        var v5 = document.getElementById("n5").value;
+        var v6 = document.getElementById("n6").value;
+        var pro = (parseFloat(v1)+parseFloat(v2)+parseFloat(v3)+parseFloat(v4)+parseFloat(v5)+parseFloat(v6))/6;
+        document.cali.resultado.value = pro;
+      }
+  </script>    
+</body>
+</html>
